@@ -1,1 +1,10 @@
+<<<<<<< HEAD
 []
+=======
+travis:
+  secure:
+    BINSTAR_TOKEN: tqeA7U3/CxrlmzcGo+dek4rHMJ/emUx2MtcVggga9Pz+mQQn/+FgsOyT5sLNklOLTzljbyCpsN9Mukh8M0EV6NVOp3MfHTX0ivP6+4Z/xUMXWyELGnAn+fao0/OP3N/k5O4OEJbMybi7wtUw8fAspANWJDBVAzl4uTwUsrAiY0Lkt/yk57bAyCuE5pwIAnNwcnee3S446BQWr+7HvCKyphEWzBCFRTZupDFuV4tg922ziRholbGkS2CKpEkiFAWIzXFYc0qT80dQvdSuLXLicztb/81LCZU9MHp0tavC0pviLga5RVFJTuWL8xwC/ic+gyWgki7Guwxdd47RXLBRAv5iLQCGBHPIEztcxgoHgKXe+R/FbLE3nORFcQmQJvtCc31lhsIIdpis8fxkrKZU8G2bZ8Pg9UpV36zVf8T1MRtg5FPd0Pmf9UEIYrvwr7Xdd2xr6TvnFdV2tQW0lI+8YWwgBTkWZMu7ReZXOSqc8FW9BryD9NI1RX4N7zJfgWSjvXuXeRcufAOCOaEPYJosN22Scx7ozkiuTRAmz9IqFZ+XZJUbEpCWrum8PqIfyaXERGDksp0F8WUZbmn3rozOkXibBZnZ1aSGe+JHyaAa43u+7m1MhuhdlwgrbIE9qeHdYmBtp6rfZrZNd+J01RfSDzDqzNxBAezSbre6xmshZjk=
+appveyor:
+  secure:
+    BINSTAR_TOKEN: ipv/06DzgA7pzz2CIAtbPxZSsphDtF+JFyoWRnXkn3O8j7oRe3rzqj3LOoq2DZp4
+>>>>>>> cef98ec ([ci skip] [skip ci] Update anaconda token)
