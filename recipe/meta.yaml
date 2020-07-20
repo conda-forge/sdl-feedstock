@@ -8,11 +8,13 @@ package:
 source:
   - url: https://www.libsdl.org/release/SDL-{{ version }}.tar.gz
     sha256: d6d316a793e5e348155f0dd93b979798933fb98aa1edebcc108829d6474aad00
+    patches:
+      - osx_patches.patch  # [osx]
   - path: CMakeLists.txt
 
 build:
-  number: 0
-  skip: true  # [win and vc<14 or osx]
+  number: 1
+  skip: true  # [win and vc<14]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -23,6 +25,16 @@ requirements:
     - vs2017_win-64          # [win64]
     - cmake  # [win]
     - ninja  # [win]
+    - {{ cdt('mesa-libgl-devel') }}  # [osx]
+    - {{ cdt('mesa-dri-drivers') }}  # [osx]
+
+  host:
+    - xorg-libx11   # [osx]
+    - xorg-libxext  # [osx]
+
+  run:
+    - xorg-libx11   # [osx]
+    - xorg-libxext  # [osx]
 
 test:
   commands:
