@@ -1,14 +1,10 @@
 c_compiler:
-- vs2019
-c_stdlib:
-- vs
+- vs2017
 channel_sources:
-- conda-forge
+- conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
-sdl2:
-- '2'
+- vs2017
 target_platform:
 - win-64
