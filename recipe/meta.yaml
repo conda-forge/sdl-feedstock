@@ -25,6 +25,7 @@ requirements:
     - vs2017_win-64          # [win64]
     - cmake  # [win]
     - ninja  # [win]
+    - make   # [unix]
     - {{ cdt('mesa-libgl-devel') }}  # [osx]
     - {{ cdt('mesa-dri-drivers') }}  # [osx]
 
