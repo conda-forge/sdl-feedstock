@@ -20,15 +20,12 @@ build:
 
 requirements:
   build:
-    - gnuconfig  # [unix]
+    - gnuconfig              # [unix]
     - {{ compiler('cxx') }}  # [not win]
     - {{ compiler('c') }}    # [not win]
-    - vs2017_win-64          # [win64]
-    - cmake  # [win]
-    - ninja  # [win]
-    - make   # [unix]
-    - {{ cdt('mesa-libgl-devel') }}  # [osx]
-    - {{ cdt('mesa-dri-drivers') }}  # [osx]
+    - cmake                  # [win]
+    - ninja                  # [win]
+    - make                   # [unix]
 
   host:
     - xorg-libx11   # [osx]
