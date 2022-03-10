@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/libsdl-org/sdl12-compat/archive/refs/tags/release-{{ version }}.tar.gz
+  - url: https://github.com/libsdl-org/sdl12-compat/archive/release-{{ version }}.tar.gz
     sha256: 5bd7942703575554670a8767ae030f7921a0ac3c5e2fd173a537b7c7a8599014
 
 
