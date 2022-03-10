@@ -16,3 +16,7 @@ cmake ${CMAKE_ARGS} -GNinja -DCMAKE_INSTALL_PREFIX=$PREFIX \
 
 ninja -j${CPU_COUNT}
 ninja install
+
+# Add sdl.pc to support old pkg-config
+# See https://github.com/libsdl-org/sdl12-compat/issues/162
+cp $PREFIX/lib/pkgconfig/sdl12_compat.pc $PREFIX/lib/pkgconfig/sdl.pc
