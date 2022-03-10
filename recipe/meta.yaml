@@ -29,8 +29,8 @@ test:
   commands:
     - test -f ${PREFIX}/include/SDL/SDL.h  # [not win]
     - if not exist %PREFIX%\\Library\\include\\SDL\\SDL.h exit 1  # [win]
-    - pkg-config --exists --print-errors --debug sdl
-    - pkg-config --validate --print-errors --debug sdl
+    - pkg-config --exists --print-errors --debug sdl  # [not win]
+    - pkg-config --validate --print-errors --debug sdl  # [not win]
   requires:
     - pkg-config
 
