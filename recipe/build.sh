@@ -1,9 +1,18 @@
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-scripts
-if [ "${target_platform}" == "linux-aarch64" ]; then
-    EXTRA_ARGS="--host=aarch64-unknown-linux-gnu --build=aarch64-unknown-linux-gnu"
-fi
+#!/bin/sh
 
-./configure --prefix=$PREFIX ${EXTRA_ARGS}
-make -j${CPU_COUNT}
-make install
+mkdir build && cd build
+
+cmake ${CMAKE_ARGS} -GNinja -DCMAKE_INSTALL_PREFIX=$PREFIX \
+      -DCMAKE_PREFIX_PATH=$PREFIX \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_LIBDIR=lib \
+      -DBUILD_SHARED_LIBS=ON \
+      -DUA_ENABLE_ENCRYPTION_OPENSSL=ON \
+      -DUA_ENABLE_HISTORIZING=ON \
+      -DUA_NAMESPACE_ZERO=REDUCED \
+      -DOPEN62541_VERSION=v${PKG_VERSION} \
+      -DUA_ARCH_REMOVE_FLAGS="-Werror" \
+      $SRC_DIR
+
+ninja -j${CPU_COUNT}
+ninja install
