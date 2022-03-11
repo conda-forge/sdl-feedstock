@@ -16,7 +16,7 @@ ninja -j${CPU_COUNT}
 ninja install
 
 # Check compatibility numbr on macOS
-otool -L ${CONDA_PREFIX}/lib/libSDL-1.2.0.dylib
+otool -L ${PREFIX}/lib/libSDL-1.2.0.dylib
 
 # Add sdl.pc to support old pkg-config
 # See https://github.com/libsdl-org/sdl12-compat/issues/162
