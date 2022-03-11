@@ -1,49 +1,43 @@
 {% set name = "sdl" %}
-{% set version = "1.2.15" %}
+{% set version = "1.2.52" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://www.libsdl.org/release/SDL-{{ version }}.tar.gz
-    sha256: d6d316a793e5e348155f0dd93b979798933fb98aa1edebcc108829d6474aad00
-    patches:
-      - osx_patches.patch  # [osx]
-  - path: CMakeLists.txt
+  - url: https://github.com/libsdl-org/sdl12-compat/archive/release-{{ version }}.tar.gz
+    sha256: 5bd7942703575554670a8767ae030f7921a0ac3c5e2fd173a537b7c7a8599014
+
 
 build:
-  number: 1
-  skip: true  # [win and vc<14]
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
 requirements:
   build:
-    - gnuconfig              # [unix]
-    - {{ compiler('cxx') }}  # [not win]
-    - {{ compiler('c') }}    # [not win]
-    - cmake                  # [win]
-    - ninja                  # [win]
-    - make                   # [unix]
+    - {{ compiler('cxx') }}
+    - {{ compiler('c') }}
+    - cmake
+    - ninja
 
   host:
-    - xorg-libx11   # [osx]
-    - xorg-libxext  # [osx]
-
-  run:
-    - xorg-libx11   # [osx]
-    - xorg-libxext  # [osx]
+    - sdl2
 
 test:
   commands:
     - test -f ${PREFIX}/include/SDL/SDL.h  # [not win]
     - if not exist %PREFIX%\\Library\\include\\SDL\\SDL.h exit 1  # [win]
+    - pkg-config --exists --print-errors --debug sdl  # [not win]
+    - pkg-config --validate --print-errors --debug sdl  # [not win]
+  requires:
+    - pkg-config
 
 about:
   home: https://www.libsdl.org/index.php
-  license: LGPL-2.1-or-later
-  license_file: COPYING
+  license: BSD-3-Clause
+  license_file: LICENSE.txt
   summary: |
     Simple DirectMedia Layer
 
