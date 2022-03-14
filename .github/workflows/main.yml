@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: regro-cf-autotick-bot-action
-        id: regro-cf-autotick-bot-action
-        uses: regro/cf-autotick-bot-action@master
+      - name: automerge-action
+        id: automerge-action
+        uses: conda-forge/automerge-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
