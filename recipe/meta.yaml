@@ -11,7 +11,7 @@ source:
 
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -23,6 +23,8 @@ requirements:
     - ninja
 
   host:
+    - sdl2
+  run:
     - sdl2
 
 test:
