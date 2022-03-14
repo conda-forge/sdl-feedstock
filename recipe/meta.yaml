@@ -24,6 +24,8 @@ requirements:
 
   host:
     - sdl2
+  run:
+    - sdl2
 
 test:
   commands:
