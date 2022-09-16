@@ -1,5 +1,5 @@
 {% set name = "sdl" %}
-{% set version = "1.2.52" %}
+{% set version = "1.2.56" %}
 
 package:
   name: {{ name }}
@@ -7,11 +7,11 @@ package:
 
 source:
   - url: https://github.com/libsdl-org/sdl12-compat/archive/release-{{ version }}.tar.gz
-    sha256: 5bd7942703575554670a8767ae030f7921a0ac3c5e2fd173a537b7c7a8599014
+    sha256: f62f3e15f95aade366ee6c03f291e8825c4689390a6be681535259a877259c58
 
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
