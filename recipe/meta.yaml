@@ -20,11 +20,11 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - {{ cdt('mesa-libglu-devel') }}  # [linux]
     - cmake
     - ninja
   host:
     - sdl2
+    - libglu              # [linux]
     - libgl-devel         # [linux]
     - libopengl           # [linux]
     - xorg-libx11         # [linux]
