@@ -11,7 +11,7 @@ source:
 
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -19,11 +19,16 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - cmake
     - ninja
-
   host:
     - sdl2
+    - libglu              # [linux]
+    - libgl-devel         # [linux]
+    - libopengl           # [linux]
+    - xorg-libx11         # [linux]
+    - xorg-libxext        # [linux]
   run:
     - sdl2
 
@@ -48,3 +53,4 @@ extra:
     - seanyen
     - traversaro
     - Tobias-Fischer
+    - ymontmarin
