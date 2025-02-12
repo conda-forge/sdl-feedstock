@@ -25,6 +25,7 @@ requirements:
   host:
     - sdl2
     - libgl-devel         # [linux]
+    - libopengl           # [linux]
     - xorg-libx11         # [linux]
     - xorg-libxext        # [linux]
   run:
