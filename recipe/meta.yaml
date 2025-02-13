@@ -49,7 +49,9 @@ about:
 
 extra:
   recipe-maintainers:
-    - seanyen
     - traversaro
     - Tobias-Fischer
     - ymontmarin
+    - dschreij
+    - matham
+    - ManifoldFR
