@@ -47,20 +47,22 @@ requirements:
     - xorg-libxext        # [linux]
 
 test:
-  commands:
-    - test -f ${PREFIX}/include/SDL/SDL.h  # [not win]
-    - if not exist %PREFIX%\\Library\\include\\SDL\\SDL.h exit 1  # [win]
-    - pkg-config --exists --print-errors --debug sdl  # [not win]
-    - pkg-config --validate --print-errors --debug sdl  # [not win]
   requires:
     - pkg-config
+  commands:
+    - pkg-config --modversion {{ name }}
+    - test -f ${PREFIX}/include/SDL3/SDL.h  # [not win]
 
 about:
-  home: https://www.libsdl.org/index.php
-  license: BSD-3-Clause
+  home: https://www.libsdl.org/
+  summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
+  description: |
+    Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
+    to make it easy to write multi-media software, such as games and emulators.
+  license: Zlib
   license_file: LICENSE.txt
-  summary: |
-    Simple DirectMedia Layer
+  doc_url: https://wiki.libsdl.org/SDL3/FrontPage
+  dev_url: https://github.com/libsdl-org/SDL
 
 extra:
   recipe-maintainers:
