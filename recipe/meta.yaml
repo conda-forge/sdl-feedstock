@@ -9,7 +9,7 @@ source:
   sha256: f59adf36a0fcf4c94198e7d3d776c1b3824211ab7aeebeb31fe19836661196aa
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage("sdl2", max_pin='x') }}
 
