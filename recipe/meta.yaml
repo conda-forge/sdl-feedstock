@@ -1,7 +1,8 @@
+{% set name = "sdl2" %}
 {% set version = "2.30.10" %}
 
 package:
-  name: sdl2
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -11,37 +12,36 @@ source:
 build:
   number: 1
   run_exports:
-    - {{ pin_subpackage("sdl2", max_pin='x') }}
+    - {{ pin_subpackage(name, max_pin='x') }}
 
 requirements:
   build:
-    - cmake  # [win]
-    - make  # [unix]
-    - autoconf  # [not win]
-    - gnuconfig   # [unix]
+    - {{ compiler('cxx') }}
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - {{ compiler('cxx') }}
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}  # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
-    - xorg-libx11  # [linux]
-    - xorg-libxext  # [linux]
-    - {{ cdt('libx11-devel') }}          # [linux]
-    - {{ cdt('libxext-devel') }}         # [linux]
-    - {{ cdt('libxrender-devel') }}      # [linux]
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - pulseaudio  # [linux]
+    - cmake       # [win]
+    - autoconf    # [not win]
+    - make        # [unix]
+    - gnuconfig   # [unix]
+    # - {{ cdt('mesa-dri-drivers') }}  # [linux]
+    # - {{ cdt('libselinux') }}  # [linux]
+    # - {{ cdt('libxdamage') }}  # [linux]
+    # - {{ cdt('libxxf86vm') }}  # [linux]
+    # - {{ cdt('libx11-devel') }}          # [linux]
+    # - {{ cdt('libxext-devel') }}         # [linux]
+    # - {{ cdt('libxrender-devel') }}      # [linux]
+    # - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
   host:
-    - xorg-libx11  # [linux]
-    - xorg-libxext  # [linux]
+    - libglu          # [linux]
+    - libgl-devel     # [linux]
+    - libopengl       # [linux]
+    - xorg-libx11     # [linux]
+    - xorg-libxext    # [linux]
     - xorg-libxfixes  # [linux]
-    - pulseaudio  # [linux]
+    - pulseaudio      # [linux]
   run:
-    - xorg-libx11  # [linux]
-    - xorg-libxext  # [linux]
+    - xorg-libx11     # [linux]
+    - xorg-libxext    # [linux]
 
 test:
   requires:
@@ -55,8 +55,6 @@ test:
     - test_version.bat
   commands:
     - sdl2-config --version  # [not win]
-
-    # test that version is baked in correctly
     - ./test_version.sh      # [unix]
     - ./test_version.bat     # [win]
 
