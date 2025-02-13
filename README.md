@@ -1,13 +1,20 @@
-About sdl-feedstock
-===================
+About sdl3-feedstock
+====================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sdl-feedstock/blob/main/LICENSE.txt)
 
-Home: https://www.libsdl.org/index.php
+Home: https://www.libsdl.org/
 
-Package license: BSD-3-Clause
+Package license: Zlib
 
-Summary: Simple DirectMedia Layer
+Summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
+
+Development: https://github.com/libsdl-org/SDL
+
+Documentation: https://wiki.libsdl.org/SDL3/FrontPage
+
+Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
+to make it easy to write multi-media software, such as games and emulators.
 
 
 Current build status
@@ -82,53 +89,53 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-sdl-green.svg)](https://anaconda.org/conda-forge/sdl) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/sdl.svg)](https://anaconda.org/conda-forge/sdl) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/sdl.svg)](https://anaconda.org/conda-forge/sdl) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/sdl.svg)](https://anaconda.org/conda-forge/sdl) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-sdl3-green.svg)](https://anaconda.org/conda-forge/sdl3) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/sdl3.svg)](https://anaconda.org/conda-forge/sdl3) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/sdl3.svg)](https://anaconda.org/conda-forge/sdl3) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/sdl3.svg)](https://anaconda.org/conda-forge/sdl3) |
 
-Installing sdl
-==============
+Installing sdl3
+===============
 
-Installing `sdl` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `sdl3` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `sdl` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `sdl3` can be installed with `conda`:
 
 ```
-conda install sdl
-```
-
-or with `mamba`:
-
-```
-mamba install sdl
-```
-
-It is possible to list all of the versions of `sdl` available on your platform with `conda`:
-
-```
-conda search sdl --channel conda-forge
+conda install sdl3
 ```
 
 or with `mamba`:
 
 ```
-mamba search sdl --channel conda-forge
+mamba install sdl3
+```
+
+It is possible to list all of the versions of `sdl3` available on your platform with `conda`:
+
+```
+conda search sdl3 --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search sdl3 --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search sdl --channel conda-forge
+mamba repoquery search sdl3 --channel conda-forge
 
-# List packages depending on `sdl`:
-mamba repoquery whoneeds sdl --channel conda-forge
+# List packages depending on `sdl3`:
+mamba repoquery whoneeds sdl3 --channel conda-forge
 
-# List dependencies of `sdl`:
-mamba repoquery depends sdl --channel conda-forge
+# List dependencies of `sdl3`:
+mamba repoquery depends sdl3 --channel conda-forge
 ```
 
 
@@ -173,17 +180,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating sdl-feedstock
-======================
+Updating sdl3-feedstock
+=======================
 
-If you would like to improve the sdl recipe or build a new
+If you would like to improve the sdl3 recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/sdl-feedstock are
+Note that all branches in the conda-forge/sdl3-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
@@ -198,8 +205,10 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@ManifoldFR](https://github.com/ManifoldFR/)
 * [@Tobias-Fischer](https://github.com/Tobias-Fischer/)
-* [@seanyen](https://github.com/seanyen/)
+* [@dschreij](https://github.com/dschreij/)
+* [@matham](https://github.com/matham/)
 * [@traversaro](https://github.com/traversaro/)
 * [@ymontmarin](https://github.com/ymontmarin/)
 
