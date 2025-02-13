@@ -20,16 +20,31 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - cmake
-    - ninja
+    - ninja               # [win]
+    - make                # [not win]
+    - pkg-config
   host:
-    - sdl2
-    - libglu              # [linux]
+    - libusb
+    - libvulkan-loader
+    - dbus                # [not win]
+    - wayland             # [linux]
+    - jack                # [linux]
+    - pulseaudio          # [linux]
+    - libxkbcommon        # [linux]
+    - libunwind           # [linux]
+    - libegl-devel        # [linux]
+    - libdrm              # [linux]
+    - libudev             # [linux]
+    - liburing            # [linux]
     - libgl-devel         # [linux]
-    - libopengl           # [linux]
     - xorg-libx11         # [linux]
     - xorg-libxext        # [linux]
+    - xorg-libxfixes      # [linux]
+    - xorg-libxcursor     # [linux]
+    - xorg-libxscrnsaver  # [linux]
   run:
-    - sdl2
+    - xorg-libx11         # [linux]
+    - xorg-libxext        # [linux]
 
 test:
   commands:
