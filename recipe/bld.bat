@@ -1,18 +1,32 @@
-:: MSVC is preferred.
-set CC=cl.exe
-set CXX=cl.exe
+setlocal EnableDelayedExpansion
 
+:: Configure for Release (results in smaller .dll file)
+set TARGET=Release
+:: Set target back to None for 64-bits builds with VS2008 and VS2010
+if %VS_MAJOR% LSS 14 (
+	if %ARCH% == 64 (
+		set TARGET=None
+	)
+)
+
+:: DirectX being integrated in the windows SDK and not being installed separately
+:: confuses good old Visual Studio 2008, so disable DirectX detection durion compilation.
+if "%VS_MAJOR%"=="9" (
+	set DIRECTX_FLAG="-DDIRECTX=OFF"
+)
+if errorlevel 1 exit 1
+
+:: Make a build folder and change to it.
 mkdir build
 cd build
 
-cmake ^
-    -G "Ninja" ^
-    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
-    -DCMAKE_BUILD_TYPE=Release ^
-    -DBUILD_SHARED_LIBS=ON ^
-    %SRC_DIR%
+:: Configure using the CMakeFiles
+cmake -G "NMake Makefiles" -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" -DCMAKE_BUILD_TYPE:STRING=!TARGET! !DIRECTX_FLAG! ..
 if errorlevel 1 exit 1
 
-:: Install.
-cmake --build . --config Release --target install
+:: Build!
+nmake
+if errorlevel 1 exit 1
+
+nmake install
 if errorlevel 1 exit 1

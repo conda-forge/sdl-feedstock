@@ -1,56 +1,69 @@
-{% set name = "sdl" %}
-{% set version = "1.2.68" %}
+{% set name = "sdl2" %}
+{% set version = "2.30.10" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  - url: https://github.com/libsdl-org/sdl12-compat/archive/release-{{ version }}.tar.gz
-    sha256: 63c6e4dcc1154299e6f363c872900be7f3dcb3e42b9f8f57e05442ec3d89d02d
-
+  url: https://github.com/libsdl-org/SDL/releases/download/release-{{ version }}/SDL2-{{ version }}.tar.gz
+  sha256: f59adf36a0fcf4c94198e7d3d776c1b3824211ab7aeebeb31fe19836661196aa
 
 build:
   number: 1
   run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x') }}
+    - {{ pin_subpackage(name, max_pin='x') }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - cmake
-    - ninja
+    - cmake           # [win]
+    - autoconf        # [not win]
+    - make            # [unix]
+    - gnuconfig       # [unix]
   host:
-    - sdl2
-    - libglu              # [linux]
-    - libgl-devel         # [linux]
-    - libopengl           # [linux]
-    - xorg-libx11         # [linux]
-    - xorg-libxext        # [linux]
+    - libglu          # [linux]
+    - libgl-devel     # [linux]
+    - libopengl       # [linux]
+    - xorg-libx11     # [linux]
+    - xorg-libxext    # [linux]
+    - xorg-libxfixes  # [linux]
+    - pulseaudio      # [linux]
   run:
-    - sdl2
+    - xorg-libx11     # [linux]
+    - xorg-libxext    # [linux]
 
 test:
-  commands:
-    - test -f ${PREFIX}/include/SDL/SDL.h  # [not win]
-    - if not exist %PREFIX%\\Library\\include\\SDL\\SDL.h exit 1  # [win]
-    - pkg-config --exists --print-errors --debug sdl  # [not win]
-    - pkg-config --validate --print-errors --debug sdl  # [not win]
   requires:
+    - {{ compiler('c') }}
+    - cmake
+    - ninja
     - pkg-config
+  files:
+    - cmake_test/
+    - test_version.sh
+    - test_version.bat
+  commands:
+    - sdl2-config --version  # [not win]
+    - ./test_version.sh      # [unix]
+    - ./test_version.bat     # [win]
 
 about:
   home: https://www.libsdl.org/index.php
-  license: BSD-3-Clause
+  license: Zlib
   license_file: LICENSE.txt
-  summary: |
-    Simple DirectMedia Layer
+  summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
+  description: |
+    Simple DirectMedia Layer is a cross-platform development library designed to
+    provide low level access to audio, keyboard, mouse, joystick, and graphics
+    hardware via OpenGL and Direct3D.
+  doc_url: https://wiki.libsdl.org/FrontPage
+  dev_url: http://hg.libsdl.org/SDL
 
 extra:
   recipe-maintainers:
-    - seanyen
-    - traversaro
-    - Tobias-Fischer
     - ymontmarin
+    - dschreij
+    - matham

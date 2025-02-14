@@ -1,20 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
-mkdir build && cd build
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./build-scripts
 
-# DYLIB_COMPAT_VERSION is set for compatibility with autotools builds
-# See https://github.com/conda-forge/sdl-feedstock/pull/6#issuecomment-1065039606
-cmake ${CMAKE_ARGS} -GNinja -DCMAKE_INSTALL_PREFIX=$PREFIX \
-      -DCMAKE_PREFIX_PATH=$PREFIX \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_LIBDIR=lib \
-      -DBUILD_SHARED_LIBS=ON \
-      -DDYLIB_COMPAT_VERSION:STRING="12.0.0" \
-      $SRC_DIR
+# we have to do this because most build scripts assume that all sdl modules
+# are installed to the same prefix.
+sed -i -- "s|@prefix@|${PREFIX}|g" sdl2.pc.in 
+sed -i -- "s|@prefix@|${PREFIX}|g" sdl2-config.in
 
-ninja -j${CPU_COUNT}
-ninja install
+export PULSEAUDIO_CFLAGS=${PREFIX}/include
+export PULSEAUDIO_LIBS=${PREFIX}/lib
 
-# Add sdl.pc to support old pkg-config
-# See https://github.com/libsdl-org/sdl12-compat/issues/162
-cp $PREFIX/lib/pkgconfig/sdl12_compat.pc $PREFIX/lib/pkgconfig/sdl.pc
+# Build SDL2
+./autogen.sh
+if [ -z ${OSX_ARCH+x} ]; then
+  ./configure --prefix=${PREFIX} --enable-video-wayland=no;
+else
+  ./configure --prefix=${PREFIX} --without-x LDFLAGS="-framework ForceFeedback" --enable-video-wayland=no;
+fi
+
+make install

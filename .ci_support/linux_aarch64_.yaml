@@ -18,6 +18,8 @@ cxx_compiler_version:
 - '13'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64:alma9
+pulseaudio:
+- '17.0'
 sdl2:
 - '2'
 target_platform:
