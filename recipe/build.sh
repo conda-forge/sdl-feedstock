@@ -1,9 +1,7 @@
 #!/bin/sh
 
 # Configure using the CMakeFiles
-cmake -S . -B build ${CMAKE_ARGS} \
-      -DCMAKE_PREFIX_PATH=$PREFIX \
-      $SDL_ARCHITECTURE_FLAG
+cmake -S . -B build ${CMAKE_ARGS} -DCMAKE_PREFIX_PATH=$PREFIX
 
 # Build
 cmake --build build --config Release
