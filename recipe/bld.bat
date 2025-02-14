@@ -1,18 +1,16 @@
-:: MSVC is preferred.
-set CC=cl.exe
-set CXX=cl.exe
+setlocal EnableDelayedExpansion
 
-mkdir build
-cd build
-
-cmake ^
-    -G "Ninja" ^
-    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
-    -DCMAKE_BUILD_TYPE=Release ^
-    -DBUILD_SHARED_LIBS=ON ^
-    %SRC_DIR%
+:: Configure using the CMakeFiles!
+cmake -S . -B build -G Ninja ^
+	  -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
+	  -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
+	  -DCMAKE_BUILD_TYPE:STRING=Release
 if errorlevel 1 exit 1
 
-:: Install.
-cmake --build . --config Release --target install
+:: Build!
+cmake --build build --config Release
+if errorlevel 1 exit 1
+
+:: Install!
+cmake --install build --config Release --prefix "%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1

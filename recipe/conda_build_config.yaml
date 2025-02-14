@@ -1,0 +1,4 @@
+# SDK at least 11.0 is required to build SDL: see:
+# https://github.com/libsdl-org/SDL/blob/c16b7bcb7acb35c5b91153e6cd6b0da847394a09/docs/README-macos.md?plain=1#L33
+MACOSX_SDK_VERSION:        # [osx]
+  - "11.0"                 # [osx]

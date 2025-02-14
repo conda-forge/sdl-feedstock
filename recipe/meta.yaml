@@ -1,19 +1,18 @@
-{% set name = "sdl" %}
-{% set version = "1.2.68" %}
+{% set name = "sdl3" %}
+{% set version = "3.2.4" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  - url: https://github.com/libsdl-org/sdl12-compat/archive/release-{{ version }}.tar.gz
-    sha256: 63c6e4dcc1154299e6f363c872900be7f3dcb3e42b9f8f57e05442ec3d89d02d
-
+  url: https://github.com/libsdl-org/SDL/releases/download/release-{{ version }}/SDL3-{{ version }}.tar.gz
+  sha256: 2938328317301dfbe30176d79c251733aa5e7ec5c436c800b99ed4da7adcb0f0
 
 build:
-  number: 1
+  number: 0
   run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x') }}
+    - {{ pin_subpackage(name|lower, max_pin='x') }}
 
 requirements:
   build:
@@ -21,36 +20,52 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
     - cmake
-    - ninja
+    - make                # [not win]
+    - ninja               # [win]
+    - pkg-config
   host:
-    - sdl2
-    - libglu              # [linux]
+    - libusb
+    - libvulkan-loader
+    - dbus                # [not win]
+    - jack                # [linux]
+    - pulseaudio          # [linux]
+    - wayland             # [linux]
+    - libdrm              # [linux]
+    - libudev             # [linux]
+    - liburing            # [linux]
+    - libunwind           # [linux]
+    - libxkbcommon        # [linux]
     - libgl-devel         # [linux]
-    - libopengl           # [linux]
+    - libegl-devel        # [linux]
     - xorg-libx11         # [linux]
     - xorg-libxext        # [linux]
+    - xorg-libxfixes      # [linux]
+    - xorg-libxcursor     # [linux]
+    - xorg-libxscrnsaver  # [linux and x86_64]
   run:
-    - sdl2
+    - xorg-libx11         # [linux]
+    - xorg-libxext        # [linux]
 
 test:
-  commands:
-    - test -f ${PREFIX}/include/SDL/SDL.h  # [not win]
-    - if not exist %PREFIX%\\Library\\include\\SDL\\SDL.h exit 1  # [win]
-    - pkg-config --exists --print-errors --debug sdl  # [not win]
-    - pkg-config --validate --print-errors --debug sdl  # [not win]
   requires:
     - pkg-config
+  commands:
+    - pkg-config --modversion {{ name }}
+    - test -f ${PREFIX}/include/SDL3/SDL.h  # [not win]
 
 about:
-  home: https://www.libsdl.org/index.php
-  license: BSD-3-Clause
+  home: https://www.libsdl.org/
+  summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
+  description: |
+    Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
+    to make it easy to write multi-media software, such as games and emulators.
+  license: Zlib
   license_file: LICENSE.txt
-  summary: |
-    Simple DirectMedia Layer
+  doc_url: https://wiki.libsdl.org/SDL3/FrontPage
+  dev_url: https://github.com/libsdl-org/SDL
 
 extra:
   recipe-maintainers:
-    - seanyen
     - traversaro
-    - Tobias-Fischer
     - ymontmarin
+    - ManifoldFR
