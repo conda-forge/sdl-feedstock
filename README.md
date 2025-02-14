@@ -206,11 +206,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@ManifoldFR](https://github.com/ManifoldFR/)
-* [@Tobias-Fischer](https://github.com/Tobias-Fischer/)
 * [@dschreij](https://github.com/dschreij/)
 * [@matham](https://github.com/matham/)
-* [@seanyen](https://github.com/seanyen/)
-* [@traversaro](https://github.com/traversaro/)
 * [@ymontmarin](https://github.com/ymontmarin/)
 
