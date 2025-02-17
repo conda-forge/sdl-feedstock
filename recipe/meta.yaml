@@ -25,6 +25,8 @@ requirements:
     - pkg-config
   host:
     - sdl3
+    - libgl-devel   # [linux]
+    - libegl-devel  # [linux]
 
 test:
   requires:
