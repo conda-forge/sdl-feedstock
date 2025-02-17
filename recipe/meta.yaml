@@ -1,16 +1,16 @@
 {% set name = "sdl2" %}
-{% set version = "2.30.10" %}
+{% set version = "2.32.50" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/libsdl-org/SDL/releases/download/release-{{ version }}/SDL2-{{ version }}.tar.gz
-  sha256: f59adf36a0fcf4c94198e7d3d776c1b3824211ab7aeebeb31fe19836661196aa
+  url: https://github.com/libsdl-org/sdl2-compat/releases/download/release-{{ version }}/sdl2-compat-{{ version }}.tar.gz
+  sha256: b559c734f2cdc4ea34266a1ef7724cbf3a729deaab23a774aa60a980368f5a88
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x') }}
 
@@ -19,21 +19,12 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - cmake           # [win]
-    - autoconf        # [not win]
-    - make            # [unix]
-    - gnuconfig       # [unix]
+    - cmake
+    - make   # [not win]
+    - ninja  # [win]
+    - pkg-config
   host:
-    - libglu          # [linux]
-    - libgl-devel     # [linux]
-    - libopengl       # [linux]
-    - xorg-libx11     # [linux]
-    - xorg-libxext    # [linux]
-    - xorg-libxfixes  # [linux]
-    - pulseaudio      # [linux]
-  run:
-    - xorg-libx11     # [linux]
-    - xorg-libxext    # [linux]
+    - sdl3
 
 test:
   requires:
