@@ -1,5 +1,5 @@
 {% set name = "sdl2" %}
-{% set version = "2.32.50" %}
+{% set version = "2.32.54" %}
 
 package:
   name: {{ name }}
@@ -8,12 +8,9 @@ package:
 source:
   url: https://github.com/libsdl-org/sdl2-compat/releases/download/release-{{ version }}/sdl2-compat-{{ version }}.tar.gz
   sha256: b559c734f2cdc4ea34266a1ef7724cbf3a729deaab23a774aa60a980368f5a88
-  patches:
-    # backport https://github.com/libsdl-org/sdl2-compat/pull/385
-    - 385.patch
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x') }}
 
