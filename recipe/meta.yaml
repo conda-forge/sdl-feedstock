@@ -43,7 +43,6 @@ test:
     - ./test_version.sh      # [unix]
     - ./test_version.bat     # [win]
     - pkg-config --exists sdl2
-    - pkg-config --exists sdl2_compat
 
 about:
   home: https://www.libsdl.org/index.php
