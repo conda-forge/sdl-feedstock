@@ -1,0 +1,77 @@
+schema_version: 1
+
+context:
+  name: sdl2
+  version: 2.32.54
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/libsdl-org/sdl2-compat/releases/download/release-${{ version }}/sdl2-compat-${{ version }}.tar.gz
+  sha256: c680c004db48604348ec8a1527b998aa653b8103f2589e5a52e26d5e35f1de66
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - ninja
+    - pkg-config
+  host:
+    - sdl3
+    - if: linux
+      then: 
+        - libgl-devel
+        - libegl-devel
+  run_exports:
+    - ${{ pin_subpackage(name|lower, upper_bound='x') }}
+
+tests:
+  - package_contents:
+      lib: 
+        - SDL2
+      include: 
+        - SDL2/SDL.h
+  - requirements:
+      run:
+        - ${{ compiler('c') }}
+        - cmake
+        - ninja
+        - pkg-config
+    files:
+      recipe:
+        - cmake_test/
+        - test_version.sh
+        - test_version.bat
+    script:
+      - if: not win
+        then: sdl2-config --version
+      - if: unix
+        then: ./test_version.sh
+      - if: win
+        then: ./test_version.bat
+      - pkg-config --exists sdl2
+
+about:
+  summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
+  description: |
+    Simple DirectMedia Layer is a cross-platform development library designed to
+    provide low level access to audio, keyboard, mouse, joystick, and graphics
+    hardware via OpenGL and Direct3D.
+  license: Zlib
+  license_file: LICENSE.txt
+  homepage: https://www.libsdl.org/
+  repository: http://hg.libsdl.org/SDL
+  documentation: https://wiki.libsdl.org/SDL2
+
+extra:
+  recipe-maintainers:
+    - traversaro
+    - ymontmarin
+    - ManifoldFR
