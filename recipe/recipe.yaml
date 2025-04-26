@@ -21,10 +21,7 @@ requirements:
     - ${{ compiler('c') }}
     - ${{ stdlib("c") }}
     - cmake
-    - if: not win
-      then: make
-    - if: win
-      then: ninja
+    - ninja
     - pkg-config
   host:
     - libusb
@@ -32,51 +29,42 @@ requirements:
     - if: not win
       then: dbus
     - if: linux
-      then: jack
-    - if: linux
-      then: pulseaudio
-    - if: linux
-      then: wayland
-    - if: linux
-      then: libdrm
-    - if: linux
-      then: libudev
-    - if: linux
-      then: liburing
-    - if: linux
-      then: libunwind
-    - if: linux
-      then: libxkbcommon
-    - if: linux
-      then: libgl-devel
-    - if: linux
-      then: libegl-devel
-    - if: linux
-      then: xorg-libx11
-    - if: linux
-      then: xorg-libxext
-    - if: linux
-      then: xorg-libxfixes
-    - if: linux
-      then: xorg-libxcursor
+      then: 
+        - jack
+        - pulseaudio
+        - wayland
+        - libdrm
+        - libudev
+        - liburing
+        - libunwind
+        - libxkbcommon
+        - libgl-devel
+        - libegl-devel
+        - xorg-libx11
+        - xorg-libxext
+        - xorg-libxfixes
+        - xorg-libxcursor
     - if: linux and x86_64
       then: xorg-libxscrnsaver
   run:
     - if: linux
-      then: xorg-libx11
-    - if: linux
-      then: xorg-libxext
+      then: 
+        - xorg-libx11
+        - xorg-libxext
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound='x') }}
 
 tests:
+  - package_contents:
+      lib: 
+        - SDL3
+      include: 
+        - SDL3/SDL.h
   - requirements:
       run:
         - pkg-config
     script:
       - pkg-config --modversion ${{ name }}
-      - if: not win
-        then: test -f ${PREFIX}/include/SDL3/SDL.h
 
 about:
   summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
