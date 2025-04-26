@@ -3,7 +3,7 @@ About sdl2-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sdl-feedstock/blob/main/LICENSE.txt)
 
-Home: https://www.libsdl.org/index.php
+Home: https://www.libsdl.org/
 
 Package license: Zlib
 
@@ -11,12 +11,11 @@ Summary: Low-level access to audio, keyboard, mouse, joystick, and graphics
 
 Development: http://hg.libsdl.org/SDL
 
-Documentation: https://wiki.libsdl.org/FrontPage
+Documentation: https://wiki.libsdl.org/SDL2
 
 Simple DirectMedia Layer is a cross-platform development library designed to
 provide low level access to audio, keyboard, mouse, joystick, and graphics
 hardware via OpenGL and Direct3D.
-
 
 Current build status
 ====================
@@ -206,7 +205,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@dschreij](https://github.com/dschreij/)
-* [@matham](https://github.com/matham/)
+* [@ManifoldFR](https://github.com/ManifoldFR/)
+* [@traversaro](https://github.com/traversaro/)
 * [@ymontmarin](https://github.com/ymontmarin/)
 
