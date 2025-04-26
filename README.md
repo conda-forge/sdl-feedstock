@@ -16,7 +16,6 @@ Documentation: https://wiki.libsdl.org/SDL3/FrontPage
 Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
 to make it easy to write multi-media software, such as games and emulators.
 
-
 Current build status
 ====================
 
