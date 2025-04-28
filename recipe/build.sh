@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Configure using the CMakeFiles
-cmake -S . -B build ${CMAKE_ARGS} -DCMAKE_PREFIX_PATH=$PREFIX
+cmake -G Ninja -S . -B build ${CMAKE_ARGS} -DCMAKE_PREFIX_PATH=$PREFIX
 
 # Build
 cmake --build build --config Release
