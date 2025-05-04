@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: sdl3
-  version: 3.2.10
+  version: "3.2.12"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://github.com/libsdl-org/SDL/releases/download/release-${{ version }}/SDL3-${{ version }}.tar.gz
-  sha256: f87be7b4dec66db4098e9c167b2aa34e2ca10aeb5443bdde95ae03185ed513e0
+  sha256: 9734f308e130c64a2b4df6bca5884c5aca577ee6c7c77ab3379474ea85e51f96
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -29,7 +29,7 @@ requirements:
     - if: not win
       then: dbus
     - if: linux
-      then: 
+      then:
         - jack
         - pulseaudio
         - wayland
@@ -44,11 +44,11 @@ requirements:
         - xorg-libxext
         - xorg-libxfixes
         - xorg-libxcursor
-    - if: linux and x86_64
-      then: xorg-libxscrnsaver
+        - if: x86_64
+          then: xorg-libxscrnsaver
   run:
     - if: linux
-      then: 
+      then:
         - xorg-libx11
         - xorg-libxext
   run_exports:
@@ -56,9 +56,9 @@ requirements:
 
 tests:
   - package_contents:
-      lib: 
+      lib:
         - SDL3
-      include: 
+      include:
         - SDL3/SDL.h
   - requirements:
       run:
