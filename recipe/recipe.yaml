@@ -13,7 +13,7 @@ source:
   sha256: 9734f308e130c64a2b4df6bca5884c5aca577ee6c7c77ab3379474ea85e51f96
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -30,7 +30,6 @@ requirements:
       then: dbus
     - if: linux
       then:
-        - jack
         - pulseaudio-client
         - wayland
         - libdrm
