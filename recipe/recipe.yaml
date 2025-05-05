@@ -30,6 +30,14 @@ requirements:
       then: dbus
     - if: linux
       then:
+        # 202505 - hmaarrfk 
+        # jack seems like it was added as a holdover
+        # and we aren't sure if any users need it in
+        # their modern (2025) workflows
+        # https://github.com/conda-forge/sdl-feedstock/pull/33#issuecomment-2851145783
+        # It may also pull in AGPL code
+        # https://github.com/conda-forge/jack-feedstock/pull/27
+        # - jack
         - pulseaudio-client
         - wayland
         - libdrm
