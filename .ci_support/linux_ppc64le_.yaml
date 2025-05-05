@@ -22,7 +22,7 @@ docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 libunwind:
 - '1.6'
-pulseaudio:
+pulseaudio_client:
 - '17.0'
 target_platform:
 - linux-ppc64le
