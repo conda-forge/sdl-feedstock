@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: sdl3
-  version: "3.2.16"
+  version: "3.2.18"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/libsdl-org/SDL/releases/download/release-${{ version }}/SDL3-${{ version }}.tar.gz
-  sha256: 6340e58879b2d15830c8460d2f589a385c444d1faa2a4828a9626c7322562be8
+  sha256: 1a775bde924397a8e0c08bfda198926c17be859d0288ad0dec1dea1b2ee04f8f
 
 build:
   number: 0
