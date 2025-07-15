@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '13'
+- '14'
 c_stdlib:
 - sysroot
 c_stdlib_version:
@@ -15,13 +15,13 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '13'
+- '14'
 dbus:
 - '1'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 libunwind:
-- '1.6'
+- '1.8'
 pulseaudio_client:
 - '17.0'
 target_platform:
