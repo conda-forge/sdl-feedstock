@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: sdl2
-  version: 2.32.54
+  version: 2.32.56
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/libsdl-org/sdl2-compat/releases/download/release-${{ version }}/sdl2-compat-${{ version }}.tar.gz
-  sha256: c680c004db48604348ec8a1527b998aa653b8103f2589e5a52e26d5e35f1de66
+  sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 
 build:
   number: 0
