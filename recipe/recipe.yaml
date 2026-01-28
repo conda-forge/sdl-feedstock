@@ -51,6 +51,7 @@ requirements:
         - xorg-libxext
         - xorg-libxfixes
         - xorg-libxcursor
+        - xorg-inputproto
         - if: x86_64
           then: xorg-libxscrnsaver
   run_exports:
