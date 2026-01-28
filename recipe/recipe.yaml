@@ -53,8 +53,8 @@ requirements:
         - xorg-libxcursor
         - xorg-inputproto
         - xorg-libxi
-        - if: x86_64
-          then: xorg-libxscrnsaver
+        - xorg-libxtst
+        - xorg-libxscrnsaver
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound='x') }}
 
