@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: sdl3
-  version: "3.2.30"
+  version: "3.4.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/libsdl-org/SDL/releases/download/release-${{ version }}/SDL3-${{ version }}.tar.gz
-  sha256: 4c3b09330d866dc52eb65b66259a6684ad387252ca8c57901b3a2b534eb42e3d
+  sha256: 082cbf5f429e0d80820f68dc2b507a94d4cc1b4e70817b119bbb8ec6a69584b8
 
 build:
   number: 0
@@ -51,8 +51,10 @@ requirements:
         - xorg-libxext
         - xorg-libxfixes
         - xorg-libxcursor
-        - if: x86_64
-          then: xorg-libxscrnsaver
+        - xorg-inputproto
+        - xorg-libxi
+        - xorg-libxtst
+        - xorg-libxscrnsaver
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound='x') }}
 
