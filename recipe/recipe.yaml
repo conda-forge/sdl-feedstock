@@ -22,7 +22,7 @@ requirements:
     - ${{ stdlib('c') }}
     - cmake
     - ninja
-    - pkg-config
+    - pkgconf
   host:
     - libusb
     - libvulkan-loader
@@ -67,7 +67,7 @@ tests:
         - SDL3/SDL.h
   - requirements:
       run:
-        - pkg-config
+        - pkgconf
     script:
       - pkg-config --modversion ${{ name }}
 
