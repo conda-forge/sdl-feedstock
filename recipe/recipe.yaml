@@ -13,7 +13,7 @@ source:
   sha256: f3bb06f55bed9557227a700af2ea62e49497ebdf58037732a731a5fb3ef8581f
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -40,6 +40,7 @@ requirements:
         # - jack
         - pulseaudio-client
         - wayland
+        - libdecor
         - libdrm
         - libudev
         - liburing
