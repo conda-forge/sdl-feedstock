@@ -56,6 +56,12 @@ requirements:
         - xorg-libxi
         - xorg-libxtst
         - xorg-libxscrnsaver
+  run_constraints:
+    # libdecor draws window decorations on Wayland compositors without
+    # server-side decorations (GNOME, Weston). SDL dlopens it, so it is
+    # optional; this only keeps an installed one new enough.
+    - if: linux
+      then: libdecor >=0.2
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound='x') }}
 
@@ -76,6 +82,10 @@ about:
   description: |
     Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
     to make it easy to write multi-media software, such as games and emulators.
+
+    On Linux, window decorations on Wayland compositors without server-side
+    decorations (such as GNOME) need libdecor: install the `libdecor` package,
+    or SDL uses the system's copy when there is one.
   license: Zlib
   license_file: LICENSE.txt
   homepage: https://www.libsdl.org/
