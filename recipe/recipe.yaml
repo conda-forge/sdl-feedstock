@@ -13,7 +13,7 @@ source:
   sha256: f3bb06f55bed9557227a700af2ea62e49497ebdf58037732a731a5fb3ef8581f
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -22,7 +22,7 @@ requirements:
     - ${{ stdlib('c') }}
     - cmake
     - ninja
-    - pkg-config
+    - pkgconf
   host:
     - libusb
     - libvulkan-loader
@@ -40,6 +40,7 @@ requirements:
         # - jack
         - pulseaudio-client
         - wayland
+        - libdecor
         - libdrm
         - libudev
         - liburing
@@ -55,6 +56,12 @@ requirements:
         - xorg-libxi
         - xorg-libxtst
         - xorg-libxscrnsaver
+  run_constraints:
+    # libdecor draws window decorations on Wayland compositors without
+    # server-side decorations (GNOME, Weston). SDL dlopens it, so it is
+    # optional; this only keeps an installed one new enough.
+    - if: linux
+      then: libdecor >=0.2
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound='x') }}
 
@@ -66,7 +73,7 @@ tests:
         - SDL3/SDL.h
   - requirements:
       run:
-        - pkg-config
+        - pkgconf
     script:
       - pkg-config --modversion ${{ name }}
 
@@ -75,6 +82,10 @@ about:
   description: |
     Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
     to make it easy to write multi-media software, such as games and emulators.
+
+    On Linux, window decorations on Wayland compositors without server-side
+    decorations (such as GNOME) need libdecor: install the `libdecor` package,
+    or SDL uses the system's copy when there is one.
   license: Zlib
   license_file: LICENSE.txt
   homepage: https://www.libsdl.org/
