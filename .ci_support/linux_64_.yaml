@@ -25,7 +25,7 @@ libudev:
 libunwind:
 - '1.8'
 liburing:
-- '2.14'
+- '2.15'
 pulseaudio_client:
 - '17.0'
 target_platform:

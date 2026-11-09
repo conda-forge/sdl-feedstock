@@ -16,6 +16,10 @@ Documentation: https://wiki.libsdl.org/SDL3/FrontPage
 Simple DirectMedia Layer (SDL for short) is a cross-platform library designed
 to make it easy to write multi-media software, such as games and emulators.
 
+On Linux, window decorations on Wayland compositors without server-side
+decorations (such as GNOME) need libdecor: install the `libdecor` package,
+or SDL uses the system's copy when there is one.
+
 Current build status
 ====================
 
