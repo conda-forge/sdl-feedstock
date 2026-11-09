@@ -13,7 +13,7 @@ source:
   sha256: 27e845b1b7dc0a91a85f1a1f18892ed205adb38caf767741eb258008d8264de0
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -26,7 +26,7 @@ requirements:
   host:
     - sdl3
     - if: linux
-      then: 
+      then:
         - libgl-devel
         - libegl-devel
   run_exports:
@@ -34,9 +34,9 @@ requirements:
 
 tests:
   - package_contents:
-      lib: 
+      lib:
         - SDL2
-      include: 
+      include:
         - SDL2/SDL.h
   - requirements:
       run:
